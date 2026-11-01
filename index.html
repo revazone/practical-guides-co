@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical Guides Co · Drop-In AI Kits for the paperwork that costs you money, time, or sleep</title>
+<meta name="description" content="Drop-In AI Kits finish the paperwork that costs you money, time, or sleep. Drop a PDF into your AI chat, answer its questions, then print and sign.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Practical Guides Co">
+<meta property="og:title" content="Practical Guides Co · Drop-In AI Kits">
+<meta property="og:description" content="Drop it in. Get it done. Portable PDF kits that work inside the AI chat you already use and hand back finished paperwork, ready to print and sign.">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Practical Guides Co · Drop-In AI Kits">
+<meta name="twitter:description" content="Drop it in. Get it done. Portable PDF kits that work inside the AI chat you already use.">
+<meta name="twitter:image" content="img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/@phosphor-icons/web@2.1.1/dist/regular/style.css" rel="stylesheet">
+<style>
+/* ============ Design tokens ============ */
+:root{
+  --navy:#152539;
+  --gold:#B08A4C;
+  --cream:#FAF6EF;
+  --ink:#1B1B1B;
+  --gray:#4A5560;
+  --line:#E4DECF;
+  --white:#FFFFFF;
+  --ease:cubic-bezier(0.22, 1, 0.36, 1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Poppins",system-ui,sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  padding-top:80px;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--gold);color:var(--white)}
+
+/* ============ Named text styles (Poppins only, 400/500/600, no italics) ============ */
+.heading-1{font-size:60px;line-height:60px;font-weight:600}
+.heading-2{font-size:48px;line-height:48px;font-weight:600}
+.heading-3{font-size:36px;line-height:40px;font-weight:600}
+.heading-4{font-size:30px;line-height:36px;font-weight:600}
+.heading-5{font-size:24px;line-height:32px;font-weight:600}
+.heading-6{font-size:20px;line-height:28px;font-weight:600}
+.title-1{font-size:20px;line-height:28px;font-weight:500}
+.title-2{font-size:18px;line-height:28px;font-weight:500}
+.title-3{font-size:16px;line-height:24px;font-weight:500}
+.title-4{font-size:14px;line-height:20px;font-weight:500}
+.title-5{font-size:12px;line-height:16px;font-weight:500}
+.body-1{font-size:16px;line-height:24px;font-weight:600}
+.body-2{font-size:16px;line-height:24px;font-weight:500}
+.body-3{font-size:16px;line-height:24px;font-weight:400}
+.body-4{font-size:14px;line-height:20px;font-weight:600}
+.body-5{font-size:14px;line-height:20px;font-weight:500}
+.body-6{font-size:14px;line-height:20px;font-weight:400}
+.button-lg{font-size:18px;line-height:28px;font-weight:600}
+.button-md{font-size:16px;line-height:24px;font-weight:600}
+.button-sm{font-size:14px;line-height:20px;font-weight:600}
+.button-xsm{font-size:12px;line-height:16px;font-weight:600}
+.caption-1{font-size:14px;line-height:20px;font-weight:500}
+.caption-2{font-size:14px;line-height:20px;font-weight:400}
+.caption-3{font-size:12px;line-height:16px;font-weight:600}
+.caption-4{font-size:12px;line-height:16px;font-weight:500}
+.caption-5{font-size:12px;line-height:16px;font-weight:400}
+h1,h2,h3,h4,h5,h6{text-wrap:balance}
+p{text-wrap:pretty}
+
+/* ============ Layout ============ */
+.wrap{max-width:1120px;margin:0 auto;padding-left:24px;padding-right:24px}
+section{scroll-margin-top:96px}
+.band{padding-top:96px;padding-bottom:96px}
+.band-tight{padding-top:64px;padding-bottom:64px}
+
+/* ============ Skip link ============ */
+.skip{
+  position:absolute;left:16px;top:-96px;z-index:200;
+  background:var(--navy);color:var(--white);
+  padding:8px 12px;border-radius:8px;text-decoration:none;
+  transition:top 300ms var(--ease);
+}
+.skip:focus{top:16px}
+
+/* ============ Floating nav ============ */
+.nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  z-index:100;width:max-content;max-width:calc(100% - 32px);
+  display:flex;align-items:center;gap:24px;
+  background:rgba(250,246,239,0.86);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border:1px solid var(--line);border-radius:999px;
+  padding:8px 8px 8px 16px;
+  box-shadow:0 8px 32px rgba(21,37,57,0.10);
+}
+.nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--navy)}
+.nav-brand img{width:32px;height:32px;border-radius:999px}
+.nav-links{display:flex;align-items:center;gap:24px;list-style:none}
+.nav-links a{
+  text-decoration:none;color:var(--gray);
+  padding-bottom:2px;border-bottom:2px solid transparent;
+  transition:color 300ms var(--ease),border-color 300ms var(--ease);
+}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a.active{color:var(--navy);border-bottom-color:var(--gold)}
+
+/* ============ Buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:8px 12px;border-radius:8px;border:1px solid transparent;
+  text-decoration:none;cursor:pointer;white-space:nowrap;
+  transition:background-color 300ms var(--ease),color 300ms var(--ease),opacity 300ms var(--ease),transform 300ms var(--ease);
+}
+.btn:active{transform:scale(0.98)}
+.btn-navy{background:var(--navy);color:var(--white)}
+.btn-navy:hover{background:#0E1B2A}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:#9C7740;color:var(--white)}
+.btn-block{width:100%}
+a:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ============ Hero ============ */
+.hero{padding-top:64px;padding-bottom:96px;text-align:center}
+.hero-inner{max-width:680px;margin:0 auto}
+.hero h1{
+  background:linear-gradient(180deg,#000000 0%,#666666 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.hero-sub{color:var(--gray);margin-top:24px}
+.hero-cta{margin-top:32px}
+.hero-proof{color:var(--gray);margin-top:16px}
+.hero-proof .dot{color:var(--gold);padding:0 4px}
+.video-frame{
+  max-width:800px;margin:48px auto 0;
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  background:var(--navy);
+}
+.video-frame .ratio{position:relative;padding-top:56.25%}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ============ Section heads ============ */
+.sec-head{max-width:680px;margin:0 auto 48px;text-align:center}
+.sec-head p{color:var(--gray);margin-top:16px}
+.sec-head.left{margin-left:0;text-align:left}
+
+/* ============ Benefits ============ */
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.benefit{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  padding:32px 24px;
+}
+.benefit .icon{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--cream);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--navy);font-size:24px;margin-bottom:24px;
+}
+.benefit h3{margin-bottom:8px}
+.benefit p{color:var(--gray)}
+
+/* ============ Steps ============ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  padding:32px 24px;
+}
+.step .num{
+  width:48px;height:48px;border-radius:999px;
+  background:var(--navy);color:var(--white);
+  display:flex;align-items:center;justify-content:center;margin-bottom:24px;
+}
+.step h3{margin-bottom:8px}
+.step p{color:var(--gray)}
+
+/* ============ Tagline reveal ============ */
+.tagline{text-align:center}
+.tagline .line{display:block}
+.tagline .w{
+  color:rgba(27,27,27,0.30);
+  transition:color 700ms var(--ease);
+  transition-delay:var(--d,0ms);
+}
+.tagline.on .w{color:var(--ink)}
+.tagline .accent.on,.tagline.on .w.accent{color:var(--gold)}
+
+/* ============ Kits ============ */
+.kits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform 500ms var(--ease),box-shadow 500ms var(--ease);
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(21,37,57,0.10)}
+.card-media{position:relative}
+.card-media img{width:100%;aspect-ratio:7/6;object-fit:cover}
+.badge-free{
+  position:absolute;top:12px;left:12px;
+  background:var(--gold);color:var(--navy);
+  padding:4px 12px;border-radius:999px;
+}
+.card-body{padding:24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-body p{color:var(--gray);flex:1}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
+.price{color:var(--navy)}
+.free-block{margin-top:64px}
+.free-head{max-width:680px;margin:0 auto 48px;text-align:center}
+.free-head p{color:var(--gray);margin-top:16px}
+.free-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:736px;margin:0 auto}
+
+/* ============ Proof strip ============ */
+.proof{background:var(--navy);color:var(--cream)}
+.proof-row{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:16px 32px;text-align:center;
+}
+.proof-row .sep{color:var(--gold)}
+
+/* ============ FAQ ============ */
+.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.faq-item{
+  background:var(--white);border:1px solid var(--line);border-radius:12px;
+  padding:24px;
+}
+.faq-item summary{
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  color:var(--navy);
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .ph{
+  font-size:20px;color:var(--gold);flex:none;
+  transition:transform 300ms var(--ease);
+}
+.faq-item[open ] summary .ph{transform:rotate(45deg)}
+.faq-item p{color:var(--gray);margin-top:16px}
+
+/* ============ Final CTA ============ */
+.final{background:var(--navy);color:var(--cream);text-align:center}
+.final h2{color:var(--white)}
+.final p{color:var(--cream);opacity:0.82;max-width:680px;margin:16px auto 0}
+.final .btn{margin-top:32px}
+
+/* ============ Footer ============ */
+footer{background:var(--navy);color:var(--cream);border-top:1px solid rgba(250,246,239,0.16)}
+.footer-inner{padding-top:64px;padding-bottom:48px}
+.footer-brand{display:flex;align-items:center;gap:8px;color:var(--white)}
+.footer-brand img{width:32px;height:32px;border-radius:999px}
+.footer-links{display:flex;flex-wrap:wrap;gap:16px 32px;list-style:none;margin-top:32px}
+.footer-links a{
+  color:var(--cream);text-decoration:none;opacity:0.86;
+  transition:opacity 300ms var(--ease),color 300ms var(--ease);
+}
+.footer-links a:hover{opacity:1;color:var(--gold)}
+.footer-legal{color:var(--cream);opacity:0.66;margin-top:32px;max-width:800px}
+.footer-base{
+  display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;
+  margin-top:32px;padding-top:24px;border-top:1px solid rgba(250,246,239,0.16);
+  color:var(--cream);opacity:0.66;
+}
+
+/* ============ Scroll reveal ============ */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 700ms var(--ease),transform 700ms var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ============ Responsive ============ */
+@media (max-width:1024px){
+  .benefits{grid-template-columns:repeat(2,1fr)}
+  .kits-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .heading-1{font-size:36px;line-height:40px}
+  .heading-2{font-size:30px;line-height:36px}
+  .heading-3{font-size:24px;line-height:32px}
+  .band{padding-top:64px;padding-bottom:64px}
+  .hero{padding-top:32px;padding-bottom:64px}
+  .nav{gap:16px;padding-left:12px}
+  .nav-links{display:none}
+  .nav-brand .title-3{font-size:14px;line-height:20px}
+  .benefits,.steps,.kits-grid,.free-grid{grid-template-columns:1fr}
+  .proof-row{gap:8px 16px}
+  .footer-base{flex-direction:column}
+}
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+  .reveal{opacity:1;transform:none}
+  .tagline .w{color:var(--ink)}
+  .tagline .w.accent{color:var(--gold)}
+  .card:hover{transform:none}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is a Drop-In AI Kit?","acceptedAnswer":{"@type":"Answer","text":"A portable PDF that carries its own instructions for an AI chat. You drop the file into the chat you already use, and it interviews you, fills in its forms, and hands back a finished document you can print and sign."}},
+    {"@type":"Question","name":"Which AI chats does it work with?","acceptedAnswer":{"@type":"Answer","text":"ChatGPT, Muse, Gemini, and similar chats all work. A free account is enough."}},
+    {"@type":"Question","name":"Do I need an AI chat?","acceptedAnswer":{"@type":"Answer","text":"No. Every kit also works the plain way: print it and fill it in by hand. The AI simply does the typing and the organizing."}},
+    {"@type":"Question","name":"Is this legal advice?","acceptedAnswer":{"@type":"Answer","text":"No. The kits are general information and organization tools. For legal questions about your situation, consult a licensed professional."}},
+    {"@type":"Question","name":"What do I get after buying?","acceptedAnswer":{"@type":"Answer","text":"An instant PDF download from Payhip. Drop it into your AI chat, or print it and start writing."}},
+    {"@type":"Question","name":"What is the refund promise?","acceptedAnswer":{"@type":"Answer","text":"If a kit is not right for your situation, email us within 30 days of purchase and we will refund you."}},
+    {"@type":"Question","name":"Does the kit send my information anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF runs inside your own AI chat. The kit itself collects nothing and phones nothing home. One caution: never give any AI a Social Security number, a bank login, or a full card number."}},
+    {"@type":"Question","name":"What does patent pending mean?","acceptedAnswer":{"@type":"Answer","text":"The AI-Ready system inside these kits is the subject of U.S. Provisional Application No. 64/187,478, filed October 29, 2026. Patent pending means that application is on file while the system is examined."}}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip body-5" href="#main">Skip to content</a>
+
+<header class="nav">
+  <a class="nav-brand" href="index.html" aria-current="page">
+    <img src="img/logo.png" alt="Practical Guides Co logo">
+    <span class="title-3">Practical Guides Co</span>
+  </a>
+  <nav aria-label="Main">
+    <ul class="nav-links body-5">
+      <li><a href="#kits" data-spy="kits">The kits</a></li>
+      <li><a href="#how" data-spy="how">How it works</a></li>
+      <li><a href="#faq" data-spy="faq">FAQ</a></li>
+    </ul>
+  </nav>
+  <a class="btn btn-navy button-sm" href="#free">Get a free kit</a>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <h1 class="heading-1">Finish the paperwork<br>that costs you money,<br>time, or sleep.</h1>
+        <p class="body-3 hero-sub">Drop-In AI Kits are portable PDF systems that work inside the AI chat you already use. Drop the file in, answer its questions, and get the finished forms back, ready to print and sign.</p>
+        <div class="hero-cta">
+          <a class="btn btn-navy button-lg" href="#free">Get a free kit</a>
+        </div>
+        <p class="caption-2 hero-proof">Patent pending<span class="dot">·</span>U.S. Provisional Application No. 64/187,478<span class="dot">·</span>Works with ChatGPT, Muse, and Gemini</p>
+      </div>
+      <div class="video-frame reveal">
+        <div class="ratio">
+          <iframe src="https://www.youtube.com/embed/FknRzsQpK50" title="Practical Guides Co explainer: how a Drop-In AI Kit works" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="band-tight" aria-label="Benefits">
+    <div class="wrap">
+      <div class="benefits">
+        <article class="benefit reveal">
+          <div class="icon"><i class="ph ph-lifebuoy" aria-hidden="true"></i></div>
+          <h3 class="title-1">Built for the worst week</h3>
+          <p class="body-6">Each kit covers one urgent paperwork problem end to end: the forms, the deadlines, the letter, the record.</p>
+        </article>
+        <article class="benefit reveal">
+          <div class="icon"><i class="ph ph-keyboard" aria-hidden="true"></i></div>
+          <h3 class="title-1">Your AI does the typing</h3>
+          <p class="body-6">The kit interviews you and fills its own fields. You answer questions instead of wrestling with blanks.</p>
+        </article>
+        <article class="benefit reveal">
+          <div class="icon"><i class="ph ph-shield-check" aria-hidden="true"></i></div>
+          <h3 class="title-1">Nothing invented</h3>
+          <p class="body-6">Every kit instructs the AI to ask rather than guess, mark unknowns, and check state rules before using them.</p>
+        </article>
+        <article class="benefit reveal">
+          <div class="icon"><i class="ph ph-printer" aria-hidden="true"></i></div>
+          <h3 class="title-1">Yours on paper</h3>
+          <p class="body-6">The deliverable is a completed document you print, sign, and file. No account, no subscription, nothing to log into.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="band" id="how">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="heading-2">How it works</h2>
+        <p class="body-3">Three steps sit between you and finished paperwork. The kit carries the instructions, so the chat knows exactly what to do.</p>
+      </div>
+      <div class="steps">
+        <article class="step reveal">
+          <div class="num title-2">1</div>
+          <h3 class="title-1">Drop the PDF into your AI chat</h3>
+          <p class="body-6">Upload the file you downloaded from Payhip into ChatGPT, Muse, Gemini, or a similar chat.</p>
+        </article>
+        <article class="step reveal">
+          <div class="num title-2">2</div>
+          <h3 class="title-1">Paste the starter prompt</h3>
+          <p class="body-6">Page one prints the exact prompt to paste. Then answer the questions the kit asks, one topic at a time.</p>
+        </article>
+        <article class="step reveal">
+          <div class="num title-2">3</div>
+          <h3 class="title-1">Print the completed kit</h3>
+          <p class="body-6">The chat hands back the kit with its fields filled. Print it, sign where it counts, and file it or send it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tagline reveal -->
+  <section class="band tagline" id="tagline" aria-label="Our motto">
+    <div class="wrap">
+      <h2 class="heading-2">
+        <span class="line">
+          <span class="w" style="--d:0ms">The</span>
+          <span class="w" style="--d:110ms">best</span>
+          <span class="w" style="--d:220ms">app</span>
+          <span class="w" style="--d:330ms">is</span>
+          <span class="w" style="--d:440ms">no</span>
+          <span class="w" style="--d:550ms">app.</span>
+        </span>
+        <span class="line">
+          <span class="w accent" style="--d:660ms">Drop</span>
+          <span class="w accent" style="--d:770ms">it</span>
+          <span class="w accent" style="--d:880ms">in.</span>
+          <span class="w accent" style="--d:990ms">Get</span>
+          <span class="w accent" style="--d:1100ms">it</span>
+          <span class="w accent" style="--d:1210ms">done.</span>
+        </span>
+      </h2>
+    </div>
+  </section>
+
+  <!-- The kits -->
+  <section class="band" id="kits">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="heading-2">The kits</h2>
+        <p class="body-3">Pick the kit that matches your week. Every kit works printed and filled in by hand, and the AI-Ready editions also work inside your AI chat.</p>
+      </div>
+      <div class="kits-grid">
+        <article class="card reveal">
+          <div class="card-media">
+            <img src="img/landlord.png" alt="Landlord Security Deposit & Move-Out Evidence Kit kit cover" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3 class="title-3">Landlord Security Deposit &amp; Move-Out Evidence Kit</h3>
+            <p class="body-6">Document the move out, track the deadline, and keep a deposit record that holds up.</p>
+            <div class="card-foot">
+              <span class="price title-2">$24</span>
+              <a class="btn btn-navy button-md" href="https://payhip.com/b/DJYdO">Get the kit</a>
+            </div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card-media">
+            <img src="img/contractor.png" alt="Contractor Change-Order & Get-Paid Kit kit cover" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3 class="title-3">Contractor Change-Order &amp; Get-Paid Kit</h3>
+            <p class="body-6">Put every change in writing, get it signed before work starts, and get paid for all of it.</p>
+            <div class="card-foot">
+              <span class="price title-2">$24</span>
+              <a class="btn btn-navy button-md" href="https://payhip.com/b/aHAqV">Get the kit</a>
+            </div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card-media">
+            <img src="img/hoa.png" alt="HOA Violation Dispute & Evidence Kit kit cover" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3 class="title-3">HOA Violation Dispute &amp; Evidence Kit</h3>
+            <p class="body-6">Answer a violation notice with a calm response and a complete evidence record.</p>
+            <div class="card-foot">
+              <span class="price title-2">$24</span>
+              <a class="btn btn-navy button-md" href="https://payhip.com/b/GotPT">Get the kit</a>
+            </div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card-media">
+            <img src="img/coparenting.png" alt="Co-Parenting Expense & Communication Log kit cover" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3 class="title-3">Co-Parenting Expense &amp; Communication Log</h3>
+            <p class="body-6">Keep shared expenses, pickups, and messages in one calm and dated record.</p>
+            <div class="card-foot">
+              <span class="price title-2">$19</span>
+              <a class="btn btn-navy button-md" href="https://payhip.com/b/2Y89h">Get the kit</a>
+            </div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card-media">
+            <img src="img/stories.png" alt="Before the Stories Are Gone kit cover" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3 class="title-3">Before the Stories Are Gone</h3>
+            <p class="body-6">Ask the questions now and keep the answers in their own words, as a keepsake.</p>
+            <div class="card-foot">
+              <span class="price title-2">$19</span>
+              <a class="btn btn-navy button-md" href="https://payhip.com/b/7PorM">Get the kit</a>
+            </div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card-media">
+            <img src="img/dies.png" alt="When Someone Dies kit cover" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3 class="title-3">When Someone Dies</h3>
+            <p class="body-6">A calm and ordered path through the paperwork that follows a death in the family.</p>
+            <div class="card-foot">
+              <span class="price title-2">$19</span>
+              <a class="btn btn-navy button-md" href="https://payhip.com/b/SqWRT">Get the kit</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Free kits -->
+      <div class="free-block" id="free">
+        <div class="free-head reveal">
+          <h3 class="heading-3">Start with a free kit</h3>
+          <p class="body-3">Two kits are free, always. Download one, drop it into your chat, and see the whole idea working in about two minutes.</p>
+        </div>
+        <div class="free-grid">
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="img/holiday.png" alt="Holiday Gift Planner kit cover" loading="lazy">
+              <span class="badge-free caption-3">Free</span>
+            </div>
+            <div class="card-body">
+              <h4 class="title-3">Holiday Gift Planner</h4>
+              <p class="body-6">Plan gifts, budgets, cards, and shipping dates in one place, with your AI doing the organizing.</p>
+              <div class="card-foot">
+                <span class="price title-2">Free</span>
+                <a class="btn btn-gold button-md" href="https://payhip.com/b/gfO1U">Download free</a>
+              </div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="img/maintenance.png" alt="Home Maintenance Year Calendar kit cover" loading="lazy">
+              <span class="badge-free caption-3">Free</span>
+            </div>
+            <div class="card-body">
+              <h4 class="title-3">Home Maintenance Year Calendar</h4>
+              <p class="body-6">A full year of home care, scheduled for your house, your systems, and your climate.</p>
+              <div class="card-foot">
+                <span class="price title-2">Free</span>
+                <a class="btn btn-gold button-md" href="https://payhip.com/b/DGqhy">Download free</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof strip -->
+  <section class="proof band-tight" aria-label="Store facts">
+    <div class="wrap">
+      <div class="proof-row title-3 reveal">
+        <span>8 kits live</span><span class="sep" aria-hidden="true">·</span>
+        <span>2 always free</span><span class="sep" aria-hidden="true">·</span>
+        <span>Patent pending in the U.S.</span><span class="sep" aria-hidden="true">·</span>
+        <span>Every paid kit carries a 30 day money back promise</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band" id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="heading-2">Questions, answered</h2>
+        <p class="body-3">The short version of everything people ask before their first kit.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary class="title-3">What is a Drop-In AI Kit?<i class="ph ph-plus" aria-hidden="true"></i></summary>
+          <p class="body-6">A portable PDF that carries its own instructions for an AI chat. You drop the file into the chat you already use, and it interviews you, fills in its forms, and hands back a finished document you can print and sign.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary class="title-3">Which AI chats does it work with?<i class="ph ph-plus" aria-hidden="true"></i></summary>
+          <p class="body-6">ChatGPT, Muse, Gemini, and similar chats all work. A free account is enough.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary class="title-3">Do I need an AI chat?<i class="ph ph-plus" aria-hidden="true"></i></summary>
+          <p class="body-6">No. Every kit also works the plain way: print it and fill it in by hand. The AI simply does the typing and the organizing.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary class="title-3">Is this legal advice?<i class="ph ph-plus" aria-hidden="true"></i></summary>
+          <p class="body-6">No. The kits are general information and organization tools. For legal questions about your situation, consult a licensed professional.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary class="title-3">What do I get after buying?<i class="ph ph-plus" aria-hidden="true"></i></summary>
+          <p class="body-6">An instant PDF download from Payhip. Drop it into your AI chat, or print it and start writing.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary class="title-3">What is the refund promise?<i class="ph ph-plus" aria-hidden="true"></i></summary>
+          <p class="body-6">If a kit is not right for your situation, email us within 30 days of purchase and we will refund you.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary class="title-3">Does the kit send my information anywhere?<i class="ph ph-plus" aria-hidden="true"></i></summary>
+          <p class="body-6">No. The PDF runs inside your own AI chat. The kit itself collects nothing and phones nothing home. One caution: never give any AI a Social Security number, a bank login, or a full card number.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary class="title-3">What does patent pending mean?<i class="ph ph-plus" aria-hidden="true"></i></summary>
+          <p class="body-6">The AI-Ready system inside these kits is the subject of U.S. Provisional Application No. 64/187,478, filed October 29, 2026. Patent pending means that application is on file while the system is examined.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final band">
+    <div class="wrap reveal">
+      <h2 class="heading-2">Start with a free kit</h2>
+      <p class="body-3">The promise is the same as at the top: pick a free kit, drop it into your chat, and watch the paperwork finish itself out. If it earns its keep, the paid kits go deeper on the harder weeks.</p>
+      <a class="btn btn-gold button-lg" href="#free">Get a free kit</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="img/logo.png" alt="Practical Guides Co logo">
+      <span class="title-3">Practical Guides Co</span>
+    </div>
+    <ul class="footer-links body-5">
+      <li><a href="https://payhip.com/PracticalGuidesCo">Store</a></li>
+      <li><a href="https://payhip.com/PracticalGuidesCo/blog/news">Blog</a></li>
+      <li><a href="https://payhip.com/PracticalGuidesCo">Contact via the store</a></li>
+      <li><a href="https://payhip.com/PracticalGuidesCo">Privacy and terms on our store</a></li>
+    </ul>
+    <p class="footer-legal caption-2">Practical Guides Co kits are general information and organization tools. They are not legal, tax, or financial advice, and no kit creates a professional advisory relationship. Laws and deadlines vary by state and change over time, so verify the rules that apply to you. For advice about your situation, consult a licensed professional.</p>
+    <p class="footer-legal caption-2">The AI-Ready system used in these kits is patent pending. U.S. Provisional Application No. 64/187,478, filed October 29, 2026.</p>
+    <div class="footer-base caption-2">
+      <span>© 2026 Practical Guides Co. All rights reserved.</span>
+      <span>Drop it in. Get it done.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Scroll reveals: rise 32px and fade, once only */
+  var revealEls = document.querySelectorAll(".reveal");
+  if (reduce || !("IntersectionObserver" in window)) {
+    revealEls.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("in"); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ ro.observe(el); });
+  }
+
+  /* Tagline word activation, in reading order, as the section enters view */
+  var tagline = document.getElementById("tagline");
+  if (tagline) {
+    if (reduce || !("IntersectionObserver" in window)) {
+      tagline.classList.add("on");
+    } else {
+      var to = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) { tagline.classList.add("on"); to.disconnect(); }
+        });
+      }, { threshold: 0.35 });
+      to.observe(tagline);
+    }
+  }
+
+  /* Scrollspy: mark the nav link for the section in view */
+  var spyLinks = document.querySelectorAll("[data-spy]");
+  if ("IntersectionObserver" in window && spyLinks.length) {
+    var map = {};
+    spyLinks.forEach(function(l){ map[l.getAttribute("data-spy")] = l; });
+    var so = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var link = map[e.target.id];
+        if (!link) return;
+        if (e.isIntersecting) {
+          spyLinks.forEach(function(l){ l.classList.remove("active"); });
+          link.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    ["kits","how","faq"].forEach(function(id){
+      var s = document.getElementById(id);
+      if (s) so.observe(s);
+    });
+  }
+})();
+</script>
+</body>
+</html>
